@@ -8,7 +8,7 @@ const getSale = (sale) => ({
     
   });
 const listSale = async () => {
-  const products = await saleModel.getAllgetAllSales();
+  const products = await saleModel.getAllSales();
 
   return products.map(getSale);
 };
