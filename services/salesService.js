@@ -13,7 +13,7 @@ const listSale = async () => {
   return products.map(getSale);
 };
 const getSaleId = async (id) => {
-    const products = saleModel.getSaleById(id);
+    const products = await saleModel.getSaleById(id);
     return products.map(getSale);
  };
  

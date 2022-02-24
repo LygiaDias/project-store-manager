@@ -13,7 +13,7 @@ const productModel = require('../models/productModel');
       };
       
       const getProductId = async (id) => {
-         const products = productModel.getProductsById(id);
+         const products = await productModel.getProductsById(id);
          return products.map(getProduct);
       };
       
