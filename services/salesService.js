@@ -8,7 +8,7 @@ const getSaleId = async (id) => {
     const results = await saleModel.getSaleById(id);
     if (!results) return null;
   
-    return results[0];
+    return results;
  };
  
  module.exports = { listSale, getSaleId };
