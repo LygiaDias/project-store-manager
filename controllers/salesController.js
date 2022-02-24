@@ -12,9 +12,9 @@ const listSale = async (_req, res, next) => {
   const getSaleId = async (req, res, next) => {
     try {
       const { id } = req.params;
-      const products = await salesService.getSaleId(id);
-      if (!products) return res.status(404).json({ message: 'Sale not found' });
-      return res.status(200).json(products);
+      const responses = await salesService.getSaleId(id);
+      if (!responses) return res.status(404).json({ message: 'Sale not found' });
+      return res.status(200).json(responses);
     } catch (e) {
       next(e);
     }

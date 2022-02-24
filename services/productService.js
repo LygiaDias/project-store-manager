@@ -1,20 +1,14 @@
 const productModel = require('../models/productModel');
       
-      const getProduct = (product) => ({
-        productId: product.product_id,
-          name: product.name,
-          quantity: product.quantity,
-          
-        });
       const listProducts = async () => {
-        const products = await productModel.getAllProducts();
+        const result = await productModel.getAllProducts();
       
-        return products.map(getProduct);
+        return result;
       };
       
       const getProductId = async (id) => {
-         const products = await productModel.getProductsById(id);
-         return products.map(getProduct);
+         const results = await productModel.getProductsById(id);
+         return results;
       };
       
       module.exports = { listProducts, 

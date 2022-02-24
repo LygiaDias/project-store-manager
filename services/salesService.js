@@ -1,20 +1,12 @@
 const saleModel = require('../models/salesModel');
       
-const getSale = (sale) => ({
-    saleId: sale.sale_id,
-    date: sale.date,
-    productId: sale.product_id,
-    quantity: sale.quantity,
-    
-  });
 const listSale = async () => {
-  const products = await saleModel.getAllSales();
-
-  return products.map(getSale);
+  const sales = await saleModel.getAllSales();
+  return sales;
 };
 const getSaleId = async (id) => {
-    const products = await saleModel.getSaleById(id);
-    return products.map(getSale);
+    const results = await saleModel.getSaleById(id);
+    return results[0];
  };
  
-module.exports = { listSale, getSaleId };
+ module.exports = { listSale, getSaleId };
