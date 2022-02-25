@@ -11,5 +11,27 @@ const productModel = require('../models/productModel');
          return results;
       };
       
-      module.exports = { listProducts, 
-        getProductId };
+      const createProduct = async (name, quantity) => {
+        const result = await productModel.createProduct(name, quantity);
+        
+        return { id: result,
+          name, 
+          quantity };
+      };
+      
+      const updateProduct = async (id, name, quantity) => {
+        await productModel.updateProduct(id, name, quantity);
+        
+        return { id, name, quantity };
+      };
+      
+      const deleteProduct = async (id) => {
+        const result = await productModel.deleteProduct(id);
+        if (!result) return false;
+        return true;
+      };
+   module.exports = { listProducts, 
+        getProductId,
+createProduct, 
+updateProduct,
+deleteProduct };
