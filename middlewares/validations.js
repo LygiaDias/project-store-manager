@@ -15,6 +15,30 @@ function nameValidation(req, res, next) {
     return next();
 }
 
+function quantityValidation(req, res, next) {
+    const { quantity } = req.body;
+    
+    if (!quantity) {
+    return res.status(400).json({ message: '"quantity" is required' });
+} 
+
+  if (quantity < 1) {
+    return res.status(422).json({ message: '"quantity" must be greater than or equal to 1' });
+}
+
+    return next();
+}
+
+function productIdValidation(req, res, next) {
+  const { productId } = req.body;
+  
+if (!productId) {
+  return res.status(400).json({ message: '"productId" is required' });
+} 
+
+  return next();
+}
+
 const validationSale = (req, res, next) => {
   const { error } = schema.validate(req.body);
 
@@ -26,4 +50,4 @@ const validationSale = (req, res, next) => {
   next();
 };
 
-module.exports = { nameValidation, validationSale };
+module.exports = { nameValidation, quantityValidation, productIdValidation, validationSale };
