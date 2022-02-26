@@ -8,11 +8,11 @@ routeProduct.get('/', productsController.listProducts);
 routeProduct.get('/:id', productsController.getProductId);
 routeProduct.post('/', 
 validations.nameValidation, 
-validations.validationSale,
+validations.quantityValidation,
 productsController.createProduct);
 routeProduct.put('/:id', 
 validations.nameValidation, 
-validations.validationSale,
+validations.quantityValidation,
 productsController.updateProduct);
 routeProduct.delete('/:id', productsController.deleteProduct);
 module.exports = routeProduct;
