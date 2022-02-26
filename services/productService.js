@@ -27,10 +27,11 @@ const productModel = require('../models/productModel');
       
       const deleteProduct = async (id) => {
         const result = await productModel.deleteProduct(id);
-        if (!result) return false;
-        return true;
+       
+        return result;
       };
-   module.exports = { listProducts, 
+   
+  module.exports = { listProducts, 
         getProductId,
 createProduct, 
 updateProduct,

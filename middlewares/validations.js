@@ -1,3 +1,5 @@
+const schema = require('../schemasValidations/schema');
+
 function nameValidation(req, res, next) {
     const { name } = req.body;
     const MIN_NUMBER = 5;
@@ -13,28 +15,15 @@ function nameValidation(req, res, next) {
     return next();
 }
 
-function quantityValidation(req, res, next) {
-    const { quantity } = req.body;
-    
-    if (!quantity) {
-    return res.status(400).json({ message: '"quantity" is required' });
-} 
+const validationSale = (req, res, next) => {
+  const { error } = schema.validate(req.body);
 
-  if (quantity < 1) {
-    return res.status(422).json({ message: '"quantity" must be greater than or equal to 1' });
-}
+  if (error) {
+    const [code, message] = error.message;
+    return res.status(code).json({ message });
+  }
 
-    return next();
-}
+  next();
+};
 
-function productIdValidation(req, res, next) {
-  const { productId } = req.body;
-  
-if (!productId) {
-  return res.status(400).json({ message: '"productId" is required' });
-} 
-
-  return next();
-}
-
-module.exports = { nameValidation, quantityValidation, productIdValidation };
+module.exports = { nameValidation, validationSale };

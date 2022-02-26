@@ -21,4 +21,14 @@ const listSale = async (req, res, next) => {
     }
     };
 
-  module.exports = { listSale, getSaleId };
+    const createSale = async (req, res, next) => {
+      try {
+      const arraySale = [...req.body];
+      const response = await salesService.createSale(arraySale);
+         return res.status(201).json(response);
+        } catch (e) {
+          next(e);
+        }
+      };
+
+  module.exports = { listSale, getSaleId, createSale }; 
