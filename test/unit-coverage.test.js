@@ -31,7 +31,7 @@ describe('Testes das camadas Model, Service e Controller', () => {
     await exec('rm -rf coverage .nyc_output');
   });
   
-  describe('1 - Escreva testes para cobrir 35% das camadas da sua aplicação', () => {
+  describe.only('1 - Escreva testes para cobrir 35% das camadas da sua aplicação', () => {
 
     it('Será validado que cobertura total das linhas dos arquivos nas pastas `models`, `services` e `controllers` é maior ou igual a 35%', async () => {
       const coverageResults = await readCoverageFile();

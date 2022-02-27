@@ -13,6 +13,6 @@ const validation = Joi.object({
   }),
 });
 
-const salesJoi = Joi.array().items(validation);
+const joi = Joi.array().items(validation);
 
-module.exports = salesJoi;
+module.exports = joi;
