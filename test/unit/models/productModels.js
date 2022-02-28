@@ -1,30 +1,78 @@
 const { expect } = require("chai");
 const sinon = require('sinon');
 const connection = require('../../../models/connection');
-const productModel = require('../../../models/productsModel');
+const productModel = require('../../../models/productModel');
 
-describe('Função getAllProducts', () => {
+
+describe('Testes da camada model de products', () => {
   
-  describe('Testa se retorn resposta do banco de dados', () => {
+
+  describe('Testa a função getAllProducts na camada model', () => {
     before(() => {
-      const response ={
-		"id": 1,
-		"name": "Martelo de Thor",
-		"quantity": 10
-	}
-sinon.stub(connection, 'execute').resolves(response);
+      const returnObject = [
+        {
+          "id": 1,
+          "name": "Martelo de Thor",
+          "quantity": 10
+        },
+        {
+          "id": 2,
+          "name": "Traje de encolhimento",
+          "quantity": 20
+        },
+        {
+          "id": 3,
+          "name": "Escudo do Capitão América",
+          "quantity": 30
+        }
+      ];
+      const result = [[returnObject], []];
+
+      sinon.stub(connection, 'execute').resolves(result);
     });
 
     after(() => {
       connection.execute.restore();
     });
 
-   
-    it('cada objeto no array deve ter as chaves id, name, quantity, ', async () => {
-      const products = await productModel.getAllProducts();
+    it('Verifica se retorna um array', async () => {
+      const product = await productModel.getAllProducts();
 
-      expect(products).not.to.be.empty;
-      products.forEach(p => expect(p).to.include.all.keys('id', 'name', 'quantity'));
+      expect(product).to.be.an('array');
+      
     });
+
+    
   });
+
+  describe('Testa a função getProductId na camada model', () => {
+    
+    const returnObject =
+        {
+          "id": 1,
+          "name": "Martelo de Thor",
+          "quantity": 10
+        }
+    
+    before(() => {
+      
+       const result = [[returnObject], []];
+
+      sinon.stub(connection, 'execute').resolves(result);
+    });
+
+    after(() => {
+      connection.execute.restore();
+    });
+
+    it('Verifica se retorna o objeto pelo Id', async () => {
+      const productId = await productModel.getProductsById(1);
+
+      expect(productId).to.be.deep.equal(returnObject);
+      
+    });
+
+    
+  });
+
 });

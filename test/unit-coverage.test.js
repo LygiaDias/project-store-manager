@@ -25,11 +25,11 @@ const executeTests = async () => {
 describe('Testes das camadas Model, Service e Controller', () => {
   beforeEach(async() => {
     await executeTests();
-  })
+  },100000)
 
   afterEach(async () => {
     await exec('rm -rf coverage .nyc_output');
-  });
+  },100000);
   
   describe.only('1 - Escreva testes para cobrir 35% das camadas da sua aplicação', () => {
 
@@ -40,7 +40,7 @@ describe('Testes das camadas Model, Service e Controller', () => {
     });
   });
   
-  describe('9 - Escreva testes para cobrir 40% das camadas da sua aplicação', () => {
+  describe.only('9 - Escreva testes para cobrir 40% das camadas da sua aplicação', () => {
   
     it('Será validado que cobertura total das linhas dos arquivos nas pastas `models`, `services` e `controllers` é maior ou igual a 40%', async () => {
       const coverageResults = await readCoverageFile();
